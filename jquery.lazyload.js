@@ -27,7 +27,8 @@
             data_attribute  : "original",
             skip_invisible  : true,
             appear          : null,
-            load            : null
+            load            : null,
+            init_load       : false
         };
 
         function update() {
@@ -130,7 +131,7 @@
         /* Check if something appears when window is resized. */
         $window.bind("resize", function(event) {
             update();
-        });
+        });        
               
         /* With IOS5 force loading images when navigating with back button. */
         /* Non optimal workaround. */
@@ -149,6 +150,11 @@
             update();
         });
         
+        /* Update initially if there are images already in view */
+        if (settings.init_load) {
+            update();
+        }
+
         return this;
     };
 
